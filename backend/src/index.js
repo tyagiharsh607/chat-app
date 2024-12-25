@@ -10,8 +10,11 @@ import { connectDB } from "./lib/db.js";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import { app, server } from "./lib/socket.js";
+import bodyParser from "body-parser";
 
 dotenv.config();
+app.use(bodyParser.json({ limit: "5mb" }));
+app.use(bodyParser.urlencoded({ limit: "5mb", extended: true }));
 
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
